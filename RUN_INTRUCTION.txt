@@ -1,0 +1,70 @@
+# Modulation Classification - Run Instructions 
+This document provides instructions for setting up and running the modulation classification pipeline in WSL (Windows Subsystem for Linux).
+
+________________________________________________________________________
+🔹 Automatic Execution [Preferred provided you have GNU Radio installed]
+
+Run all steps in one command:
+
+    -------------------------------------------------------------------
+    chmod +x run_all.sh  # Give execution permission (only needed once)
+    ./run_all.sh         # Execute the entire pipeline
+    -------------------------------------------------------------------
+
+________________________________________________________________________
+
+🔹 Manual Execution (Step-by-Step)
+
+1️⃣ Activate Python Virtual Environment
+Ensure you are using the correct environment:
+
+    -----------------------------
+    source venv/bin/activate
+    -----------------------------
+
+2️⃣ Install Dependencies
+Install required Python packages:
+
+    -------------------------------
+    pip install -r requirements.txt
+    -------------------------------
+
+    -------------------------------
+    cd codes
+    -------------------------------   
+
+3️⃣ Generate Modulated Signals
+Run the script to generate synthetic modulated signals:
+
+    -----------------------------
+    python3 1_generate_signal.py
+    -----------------------------
+
+4️⃣ Extract Features
+Extract relevant features from the generated signals:
+
+    -----------------------------
+    python3 2_feature_extraction.py
+    -----------------------------
+
+5️⃣ Train and Test Model
+Train SVM and Random Forest models on 40 signals and test on 10 unseen:
+
+    -----------------------------
+    python3 3_train_test_model.py
+    -----------------------------
+
+6️⃣ Real-Time Monitoring and Prediction
+Make predictions every 5–10 seconds and apply majority voting:
+
+    -----------------------------
+    python3 4_real_time_15seconds.py
+    -----------------------------
+
+7️⃣ Visualize Results
+Visualize prediction outcomes and system metrics:
+
+    -----------------------------
+    python3 5_dashboard.py
+    -----------------------------
+
